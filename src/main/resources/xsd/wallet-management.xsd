@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://models.walletmanagementws.example.com/"
+           xmlns:tns="http://models.walletmanagementws.example.com/"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="GenericArguments">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="GetInformationArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments">
+                <xs:sequence>
+                    <xs:element name="serviceId" type="xs:long"/>
+                    <xs:element name="parameters" type="tns:GenericParam" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GetInformationResult">
+        <xs:sequence>
+            <xs:element name="errorMsg" type="xs:string"/>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="timeStamp" type="xs:dateTime"/>
+            <xs:element name="parameters" type="tns:GenericParam" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PerformTransactionArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments">
+                <xs:sequence>
+                    <xs:element name="serviceId" type="xs:long"/>
+                    <xs:element name="transactionId" type="xs:long"/>
+                    <xs:element name="transactionTime" type="xs:dateTime"/>
+                    <xs:element name="amount" type="xs:long"/>
+                    <xs:element name="parameters" type="tns:GenericParam" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransactionDetails">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments">
+                <xs:sequence>
+                    <xs:element name="amount" type="xs:long"/>
+                    <xs:element name="providerTrnId" type="xs:long"/>
+                    <xs:element name="transactionId" type="xs:long"/>
+                    <xs:element name="transactionTime" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="PerformTransactionResult">
+        <xs:sequence>
+            <xs:element name="errorMsg" type="xs:string"/>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="timeStamp" type="xs:dateTime"/>
+            <xs:element name="parameters" type="tns:GenericParam" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="providerTrnId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GenericParam">
+        <xs:sequence>
+            <xs:element name="paramKey" type="xs:string"/>
+            <xs:element name="paramValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChangePasswordArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments">
+                <xs:sequence>
+                    <xs:element name="newPassword" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ChangePasswordResult">
+        <xs:sequence>
+            <xs:element name="errorMsg" type="xs:string"/>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetStatementArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetStatementResult">
+        <xs:sequence>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+
+    </xs:complexType>
+
+    <xs:complexType name="CancelTransactionArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CancelTransactionResult">
+        <xs:sequence>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CheckTransactionArguments">
+        <xs:complexContent>
+            <xs:extension base="tns:GenericArguments"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CheckTransactionResult">
+        <xs:sequence>
+            <xs:element name="status" type="xs:int"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetInformationRequest" type="tns:GetInformationArguments"/>
+    <xs:element name="GetInformationResponse" type="tns:GetInformationResult"/>
+
+    <xs:element name="PerformTransactionRequest" type="tns:PerformTransactionArguments"/>
+    <xs:element name="PerformTransactionResponse" type="tns:PerformTransactionResult"/>
+    <xs:element name="TransactionStatement" type="tns:TransactionDetails"/>
+
+    <xs:element name="ChangePasswordRequest" type="tns:ChangePasswordArguments"/>
+    <xs:element name="ChangePasswordResponse" type="tns:ChangePasswordResult"/>
+
+    <xs:element name="GetStatementRequest" type="tns:GetStatementArguments"/>
+    <xs:element name="GetStatementResponse" type="tns:GetStatementResult"/>
+
+    <xs:element name="CancelTransactionRequest" type="tns:CancelTransactionArguments"/>
+    <xs:element name="CancelTransactionResponse" type="tns:CancelTransactionResult"/>
+
+    <xs:element name="CheckTransactionRequest" type="tns:CheckTransactionArguments"/>
+    <xs:element name="CheckTransactionResponse" type="tns:CheckTransactionResult"/>
+
+</xs:schema>
