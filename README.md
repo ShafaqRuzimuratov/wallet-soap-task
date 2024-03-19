@@ -12,6 +12,18 @@ Before you can run the Wallet Management WS, ensure you have the following insta
 - Maven (if using Maven as a build tool)
 - PostgreSQL
 
+## Important Notes
+
+PerformTransaction and GetInformation methods have implementation 
+
+Stubs for Other Methods
+For the purpose of this test assignment, stubs for the following methods are implemented to return static formatted responses:
+
+ChangePassword
+GetStatement
+CancelTransaction
+CheckTransaction
+
 ## Configuration
 
 Before running the application, make sure to configure your database settings. The default settings are as follows:

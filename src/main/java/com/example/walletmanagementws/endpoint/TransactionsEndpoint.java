@@ -20,6 +20,7 @@ public class TransactionsEndpoint {
     private final TransactionService transactionService;
     private ObjectFactory objectFactory = new ObjectFactory();
 
+    // необходимо реализовать функционал
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "PerformTransactionRequest")
     @ResponsePayload
     public JAXBElement<PerformTransactionResult> performTransaction(@RequestPayload JAXBElement<PerformTransactionArguments> request) {
@@ -32,6 +33,8 @@ public class TransactionsEndpoint {
         return objectFactory.createGetInformationResponse(transactionService.getInformation(response.getValue()));
     }
 
+
+    // просто заглушки для возврата ответа (implementation qilinmagan)
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ChangePasswordRequest")
     @ResponsePayload
     public JAXBElement<ChangePasswordResult> changePassword(@RequestPayload JAXBElement<ChangePasswordArguments> request) {
